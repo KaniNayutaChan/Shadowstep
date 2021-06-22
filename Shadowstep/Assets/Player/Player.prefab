@@ -103,6 +103,9 @@ MonoBehaviour:
   canMove: 1
   movementSpeed: 5
   maxHealth: 20
+  currentHealth: 0
+  maxPosture: 20
+  currentPosture: 0
   maxLevel: 100
   currentExperience: 0
 --- !u!50 &1063293571872893052

@@ -18,12 +18,16 @@ public class Player : MonoBehaviour
 
     [Space]
     public float maxHealth;
-    float currentHealth;
+    public float currentHealth;
+
+    [Space]
+    public float maxPosture;
+    public float currentPosture;
 
     [Space]
     public float maxLevel;
     float currentLevel;
-    [HideInInspector] public float currentExperience;
+    public float currentExperience;
 
     // Start is called before the first frame update
     void Start()
@@ -91,7 +95,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    float RequiredExperienceToLevelUp()
+    public float RequiredExperienceToLevelUp()
     {
         //Function of required experience based on level
         float requiredExperience = currentLevel * 10;
