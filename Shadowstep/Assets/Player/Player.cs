@@ -19,7 +19,13 @@ public class Player : MonoBehaviour
     [Space]
     public float maxHealth;
     float currentHealth;
-    
+
+    [Space]
+    [HideInInspector] public float currentExperience;
+    public float requiredExperience;
+    public float maxLevel;
+    public float currentLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +48,7 @@ public class Player : MonoBehaviour
     {
         CheckForMove();
         CheckForDie();
+        CheckForLevelUp();
     }
 
     void CheckForMove()
@@ -85,6 +92,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    void CheckForLevelUp()
+    {
+        if (currentExperience >= currentLevel * 10)
+        {
+            LevelUp((currentLevel * 10) - currentExperience);
+        }
+    }
+
+    public void LevelUp(float experienceOverflow)
+    {
+        if (currentLevel < maxLevel)
+        {
+            currentLevel += 1;
+            currentExperience = experienceOverflow;
+            HealToFull();
+        }
+    }
+
     IEnumerator Die()
     {
         yield return new WaitForSeconds(3);
@@ -97,6 +122,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1.3f);
         isDead = false;
+        currentExperience /= 2;
         HealToFull();
     }
 

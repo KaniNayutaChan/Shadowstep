@@ -29,14 +29,14 @@ public class RoomManager : MonoBehaviour
     {
         public int enemyNumber;
         public Vector3 position;
-        [HideInInspector] public int skinNumber;
+        [HideInInspector] public int variantNumber;
 
         public Enemy Clone()
         {
             Enemy clone = new Enemy();
             clone.enemyNumber = enemyNumber;
             clone.position = position;
-            clone.skinNumber = skinNumber;
+            clone.variantNumber = variantNumber;
             return clone;
         }
     }
@@ -84,7 +84,7 @@ public class RoomManager : MonoBehaviour
         {
             for (int j = 0; j < rooms[i].enemies.Length; j++)
             {
-                rooms[i].enemies[j].skinNumber = Random.Range(0, enemyList[rooms[i].enemies[j].enemyNumber].skinList.Length);
+                rooms[i].enemies[j].variantNumber = Random.Range(0, enemyList[rooms[i].enemies[j].enemyNumber].skinList.Length);
             }
         }
 
@@ -117,7 +117,7 @@ public class RoomManager : MonoBehaviour
         {
             if (rooms[room].aliveEnemies[i].enemyNumber != 0)
             {
-                GameObject enemy = Instantiate(enemyList[rooms[room].aliveEnemies[i].enemyNumber].skinList[rooms[room].aliveEnemies[i].skinNumber], rooms[room].aliveEnemies[i].position, transform.rotation, currentRoom.transform);
+                GameObject enemy = Instantiate(enemyList[rooms[room].aliveEnemies[i].enemyNumber].skinList[rooms[room].aliveEnemies[i].variantNumber], rooms[room].aliveEnemies[i].position, transform.rotation, currentRoom.transform);
                 //enemy.GetComponent<BaseEnemyHealth>().number = i;
             }
         }
