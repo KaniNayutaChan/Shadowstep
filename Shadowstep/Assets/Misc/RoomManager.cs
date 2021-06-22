@@ -106,7 +106,7 @@ public class RoomManager : MonoBehaviour
 
     IEnumerator InstantiateRoom(int room, Vector3 spawnPos)
     {
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(currentRoom);
         currentRoomNumber = room;
         currentRoom = Instantiate(rooms[room].room);
