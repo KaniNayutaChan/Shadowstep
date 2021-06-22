@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BossRoom : MonoBehaviour
 {
-    public int boss;
     public GameObject bossDoor1;
     public GameObject bossDoor2;
     public float minXTrigger;
     public float maxXTrigger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,20 +18,16 @@ public class BossRoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].aliveEnemies.Length == 0)
+        if (RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].aliveEnemies.Length != 0)
         {
             if (Player.instance.transform.position.x > minXTrigger && Player.instance.transform.position.x < maxXTrigger)
             {
                 SetDoorActive(true);
             }
         }
-        else
-        {
-            StartCoroutine(DestroyDoor());
-        }
     }
 
-    IEnumerator DestroyDoor()
+    public IEnumerator DestroyDoor()
     {
         yield return new WaitForSeconds(2);
 

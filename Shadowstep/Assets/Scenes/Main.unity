@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -193,6 +194,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7181d697613c49be497da7582bd06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yOffSet: 2
+  speed: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -353,9 +368,8 @@ MonoBehaviour:
   canMove: 1
   movementSpeed: 5
   maxHealth: 20
-  currentExperience: 0
   maxLevel: 100
-  currentLevel: 1
+  currentExperience: 0
 --- !u!50 &759071775
 Rigidbody2D:
   serializedVersion: 4
@@ -454,4 +468,10 @@ MonoBehaviour:
   currentRoom: {fileID: 0}
   currentRoomNumber: 0
   enemyList: []
-  rooms: []
+  rooms:
+  - room: {fileID: 6197846856378872849, guid: 16ff97c6cc238e545b363e8c53d00926, type: 3}
+    enemies: []
+    aliveEnemies: []
+  - room: {fileID: 6197846856378872849, guid: e400340a41e539f4d9ae1c245a565bb0, type: 3}
+    enemies: []
+    aliveEnemies: []
