@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
 
     [Space]
     public float maxLevel;
-    float currentLevel;
+    public float currentLevel;
     public float currentExperience;
 
     // Start is called before the first frame update
