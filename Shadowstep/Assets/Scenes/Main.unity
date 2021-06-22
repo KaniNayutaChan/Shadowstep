@@ -353,6 +353,9 @@ MonoBehaviour:
   canMove: 1
   movementSpeed: 5
   maxHealth: 20
+  currentExperience: 0
+  maxLevel: 100
+  currentLevel: 1
 --- !u!50 &759071775
 Rigidbody2D:
   serializedVersion: 4
