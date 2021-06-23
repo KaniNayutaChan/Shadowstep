@@ -13,11 +13,11 @@ public class Player : MonoBehaviour
         Attacking,
         Blocking,
         Healing,
+        Grappling,
         Dead
     }
 
     [HideInInspector] public Rigidbody2D playerRB;
-    [HideInInspector] public bool isDead = false;
   
     [HideInInspector] public bool canMove = true;
     Vector3 moveInputVector = new Vector3();
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isDead && canMove)
+        if (currentState == State.Moving)
         {
             moveInputVector.Set(moveInput, 0, 0);
             transform.position += moveInputVector * movementSpeed * Time.deltaTime;
@@ -101,9 +101,9 @@ public class Player : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            if (!isDead)
+            if (currentState != State.Dead)
             {
-                isDead = true;
+                currentState = State.Dead;
                 canMove = false;
                 playerRB.velocity = Vector2.zero;
                 StartCoroutine(Die());
@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(1.3f);
-        isDead = false;
+        currentState = State.Moving;
         currentExperience /= 2;
         HealToFull();
     }
