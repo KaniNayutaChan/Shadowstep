@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
         Attacking,
         Blocking,
         Healing,
+        Dashing,
         Grappling,
         Dead
     }
