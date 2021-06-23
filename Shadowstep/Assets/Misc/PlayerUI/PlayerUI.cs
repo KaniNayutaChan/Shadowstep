@@ -18,8 +18,34 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health.fillAmount = Player.instance.currentHealth / Player.instance.maxHealth;
-        posture.fillAmount = Player.instance.currentPosture / Player.instance.maxPosture;
-        experience.fillAmount = Player.instance.currentExperience / Player.instance.RequiredExperienceToLevelUp();
+        ChangeUIBar(health, Player.instance.currentHealth, Player.instance.maxHealth);
+        ChangeUIBar(posture, Player.instance.currentPosture, Player.instance.maxPosture);
+        ChangeUIBar(experience, Player.instance.currentExperience, Player.instance.RequiredExperienceToLevelUp());
+    }
+
+    void ChangeUIBar(Image UI, float current, float max)
+    {
+        if (UI.fillAmount < current / max)
+        {
+            if (UI.fillAmount + Time.deltaTime > current / max)
+            {
+                UI.fillAmount = current/max;
+            }
+            else
+            {
+                UI.fillAmount += Time.deltaTime;
+            }
+        }
+        else if (UI.fillAmount > current / max)
+        {
+            if (UI.fillAmount - Time.deltaTime < current / max)
+            {
+                UI.fillAmount = current / max;
+            }
+            else
+            {
+                UI.fillAmount -= Time.deltaTime;
+            }
+        }
     }
 }

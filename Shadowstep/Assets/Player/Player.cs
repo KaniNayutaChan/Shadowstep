@@ -6,6 +6,16 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
+    State currentState;
+    public enum State
+    {
+        Moving,
+        Attacking,
+        Blocking,
+        Healing,
+        Dead
+    }
+
     [HideInInspector] public Rigidbody2D playerRB;
     [HideInInspector] public bool isDead = false;
   
@@ -49,7 +59,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForMove();
+        switch(currentState)
+        {
+            case State.Moving:
+                CheckForMove();
+                break;
+        }
+
         CheckForDie();
         CheckForLevelUp();
     }

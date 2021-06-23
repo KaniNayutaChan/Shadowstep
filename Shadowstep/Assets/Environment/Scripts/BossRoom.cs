@@ -18,16 +18,20 @@ public class BossRoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].aliveEnemies.Length != 0)
+        if (RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].aliveEnemies[0].enemyNumber != 0)
         {
             if (Player.instance.transform.position.x > minXTrigger && Player.instance.transform.position.x < maxXTrigger)
             {
                 SetDoorActive(true);
             }
         }
+        else
+        {
+            StartCoroutine(DestroyDoor());
+        }
     }
 
-    public IEnumerator DestroyDoor()
+    IEnumerator DestroyDoor()
     {
         yield return new WaitForSeconds(2);
 
