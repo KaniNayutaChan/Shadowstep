@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Instantiate(RoomManager.instance.transition);
-        RoomManager.instance.SpawnRoom(RoomManager.instance.lastSavedRoomNumber, RoomManager.instance.respawnPos);
+        RoomManager.instance.SpawnRoom(RoomManager.instance.lastSavedRoomNumber, Vector3.zero);
         StartCoroutine(Respawn());
     }
 

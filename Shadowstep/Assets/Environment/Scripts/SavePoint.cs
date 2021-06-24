@@ -17,7 +17,6 @@ public class SavePoint : MonoBehaviour
             {
                 Player.instance.currentState = Player.State.Saving;
                 RoomManager.instance.lastSavedRoomNumber = RoomManager.instance.currentRoomNumber;
-                RoomManager.instance.respawnPos = transform.position;
                 RoomManager.instance.RespawnEnemies();
                 Player.instance.HealToFull();
                 hasSpawned = false;

@@ -12,7 +12,6 @@ public class RoomManager : MonoBehaviour
     public GameObject transition;
 
     [HideInInspector] public int lastSavedRoomNumber;
-    [HideInInspector] public Vector2 respawnPos;
 
     [HideInInspector] public GameObject currentRoom;
     [HideInInspector] public int currentRoomNumber;
@@ -47,6 +46,10 @@ public class RoomManager : MonoBehaviour
     {
         [Space]
         public GameObject room;
+
+        [Space]
+        public float minX;
+        public float maxX;
 
         [Space]
         public bool hasBeenVisited = false;
