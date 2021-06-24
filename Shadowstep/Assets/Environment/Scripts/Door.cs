@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
         {
             RoomManager.instance.SpawnRoom(connectedRoom, spawnPos);
             Instantiate(RoomManager.instance.transition);
-            Player.instance.canMove = false;
+            Player.instance.currentState = Player.State.Travelling;
             Destroy(gameObject);
         }
     }

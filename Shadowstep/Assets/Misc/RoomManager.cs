@@ -49,6 +49,10 @@ public class RoomManager : MonoBehaviour
         public GameObject room;
 
         [Space]
+        public bool hasBeenVisited = false;
+        public bool isSaveRoom = false;
+
+        [Space]
         public Enemy[] enemies;
         [HideInInspector] public Enemy[] aliveEnemies;
     }
@@ -108,10 +112,11 @@ public class RoomManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         Destroy(currentRoom);
+        rooms[currentRoomNumber].hasBeenVisited = true;
         currentRoomNumber = room;
         currentRoom = Instantiate(rooms[room].room);
         Player.instance.transform.position = spawnPos;
-        Player.instance.canMove = true;
+        Player.instance.currentState = Player.State.Moving;
 
         for (int i = 0; i < rooms[room].aliveEnemies.Length; i++)
         {

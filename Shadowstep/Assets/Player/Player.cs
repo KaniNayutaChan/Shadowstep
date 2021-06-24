@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     {
         Moving,
         Attacking,
+        Travelling,
         Blocking,
         Healing,
         Dashing,
@@ -21,7 +22,6 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public Rigidbody2D playerRB;
   
-    [HideInInspector] public bool canMove = true;
     Vector3 moveInputVector = new Vector3();
     float moveInput;
 
@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
 
         playerRB = GetComponent<Rigidbody2D>();
         HealToFull();
-        canMove = true;
     }
 
     // Update is called once per frame
@@ -110,7 +109,6 @@ public class Player : MonoBehaviour
             if (currentState != State.Dead)
             {
                 currentState = State.Dead;
-                canMove = false;
                 playerRB.velocity = Vector2.zero;
                 StartCoroutine(Die());
             }
