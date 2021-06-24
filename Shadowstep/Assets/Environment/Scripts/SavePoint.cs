@@ -13,7 +13,7 @@ public class SavePoint : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, Player.instance.transform.position) < 1f)
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow))
+            if(Input.GetKeyDown(KeyCode.UpArrow) && Player.instance.currentState == Player.State.Moving)
             {
                 Player.instance.currentState = Player.State.Saving;
                 RoomManager.instance.lastSavedRoomNumber = RoomManager.instance.currentRoomNumber;

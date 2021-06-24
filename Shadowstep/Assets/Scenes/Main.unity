@@ -992,13 +992,17 @@ MonoBehaviour:
   respawnPos: {x: 0, y: 0}
   currentRoom: {fileID: 0}
   currentRoomNumber: 0
-  enemyList: []
+  enemyList:
+  - skinList: []
   rooms:
   - room: {fileID: 6197846856378872849, guid: 16ff97c6cc238e545b363e8c53d00926, type: 3}
     enemies: []
     aliveEnemies: []
   - room: {fileID: 6197846856378872849, guid: e400340a41e539f4d9ae1c245a565bb0, type: 3}
-    enemies: []
+    enemies:
+    - enemyNumber: 0
+      position: {x: 0, y: 0, z: 0}
+      variantNumber: 0
     aliveEnemies: []
 --- !u!1 &1629513573
 GameObject:
