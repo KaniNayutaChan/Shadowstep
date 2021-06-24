@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9022049786176737078}
   - component: {fileID: -7111705557380047179}
   m_Layer: 0
-  m_Name: Bench
+  m_Name: SavePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,3 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88016e0e37b937946bbc22f72ed3a0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savePointMenu: {fileID: 6269438904809091201, guid: 8313153ab6792af42a3660403859febd, type: 3}

@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
 
-    State currentState;
+    [HideInInspector] public State currentState;
     public enum State
     {
         Moving,
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
         Healing,
         Dashing,
         Grappling,
+        Saving,
         Dead
     }
 
@@ -63,7 +64,11 @@ public class Player : MonoBehaviour
         switch(currentState)
         {
             case State.Moving:
-                CheckForMove();
+                Move();
+                break;
+
+            case State.Saving:
+                Save();
                 break;
         }
 
@@ -71,7 +76,7 @@ public class Player : MonoBehaviour
         CheckForLevelUp();
     }
 
-    void CheckForMove()
+    void Move()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
@@ -155,13 +160,20 @@ public class Player : MonoBehaviour
 
     public void Save()
     {
-        HealToFull();
-        RoomManager.instance.RespawnEnemies();
-        Debug.Log("Game saved");
+        if (transform.position != Vector3.zero)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, movementSpeed * Time.deltaTime);
+        }
     }
 
-    void HealToFull()
+    public void HealToFull()
     {
         currentHealth = maxHealth;
+    }
+
+    public IEnumerator SwitchState(State state, float time)
+    {
+        yield return new WaitForSeconds(time);
+        currentState = state;
     }
 }
