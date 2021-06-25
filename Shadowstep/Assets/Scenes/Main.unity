@@ -985,16 +985,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ec29b23c491cc4ea8cd90b9425ad8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420032}
   debugSpawnRoomNumber: 0
   debugSpawnPosition: {x: 0, y: 0}
   transition: {fileID: 320107546014614382, guid: f461eed50b1c9314a8a91484e794ae6a, type: 3}
   lastSavedRoomNumber: 0
   currentRoom: {fileID: 0}
+  currentBackground: {fileID: 0}
   currentRoomNumber: 0
   enemyList:
-  - skinList: []
+  - variantList: []
   rooms:
   - room: {fileID: 6197846856378872849, guid: 16ff97c6cc238e545b363e8c53d00926, type: 3}
+    background: {fileID: 3422781119669025932, guid: 3bdfd611a544eac4eaede5827cd4bc3b, type: 3}
+    backgroundPos: {x: 0, y: 0, z: 0}
     minX: -2
     maxX: 2
     hasBeenVisited: 0
@@ -1002,6 +1006,8 @@ MonoBehaviour:
     enemies: []
     aliveEnemies: []
   - room: {fileID: 6197846856378872849, guid: e400340a41e539f4d9ae1c245a565bb0, type: 3}
+    background: {fileID: 0}
+    backgroundPos: {x: 0, y: 0, z: 0}
     minX: 0
     maxX: 0
     hasBeenVisited: 0

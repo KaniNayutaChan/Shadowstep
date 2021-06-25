@@ -6,21 +6,27 @@ public class RoomManager : MonoBehaviour
 {
     public static RoomManager instance;
 
+    [Space]
+    public Transform mainCamera;
+
+    [Space]
     public int debugSpawnRoomNumber;
     public Vector2 debugSpawnPosition;
 
+    [Space]
     public GameObject transition;
 
     [HideInInspector] public int lastSavedRoomNumber;
 
     [HideInInspector] public GameObject currentRoom;
+    [HideInInspector] public GameObject currentBackground;
     [HideInInspector] public int currentRoomNumber;
 
     public EnemyList[] enemyList;
     [System.Serializable]
     public class EnemyList
     {
-        public GameObject[] skinList;
+        public GameObject[] variantList;
     }
 
     [System.Serializable]
@@ -46,6 +52,8 @@ public class RoomManager : MonoBehaviour
     {
         [Space]
         public GameObject room;
+        public GameObject background;
+        public Vector3 backgroundPos;
 
         [Space]
         public float minX;
@@ -91,7 +99,7 @@ public class RoomManager : MonoBehaviour
         {
             for (int j = 0; j < rooms[i].enemies.Length; j++)
             {
-                rooms[i].enemies[j].variantNumber = Random.Range(0, enemyList[rooms[i].enemies[j].enemyNumber].skinList.Length);
+                rooms[i].enemies[j].variantNumber = Random.Range(0, enemyList[rooms[i].enemies[j].enemyNumber].variantList.Length);
             }
         }
 
@@ -114,18 +122,30 @@ public class RoomManager : MonoBehaviour
     IEnumerator InstantiateRoom(int room, Vector3 spawnPos)
     {
         yield return new WaitForSeconds(1.5f);
+
+        //destroy current room
         Destroy(currentRoom);
+        //destroy current background
+        Destroy(currentBackground);
+        //set new room to has been visited for map
         rooms[currentRoomNumber].hasBeenVisited = true;
+        //store the current room number
         currentRoomNumber = room;
+        //instantiate current room
         currentRoom = Instantiate(rooms[room].room);
+        //instantiate current background
+        currentBackground = Instantiate(rooms[room].background, rooms[room].backgroundPos, transform.rotation, mainCamera);
+        //spawn player at correct position
         Player.instance.transform.position = spawnPos;
+        //change player state back to moving
         Player.instance.currentState = Player.State.Moving;
 
+        //spawn each enemy
         for (int i = 0; i < rooms[room].aliveEnemies.Length; i++)
         {
             if (rooms[room].aliveEnemies[i].enemyNumber != 0)
             {
-                GameObject enemy = Instantiate(enemyList[rooms[room].aliveEnemies[i].enemyNumber].skinList[rooms[room].aliveEnemies[i].variantNumber], rooms[room].aliveEnemies[i].position, transform.rotation, currentRoom.transform);
+                GameObject enemy = Instantiate(enemyList[rooms[room].aliveEnemies[i].enemyNumber].variantList[rooms[room].aliveEnemies[i].variantNumber], rooms[room].aliveEnemies[i].position, transform.rotation, currentRoom.transform);
                 enemy.GetComponent<BaseEnemyHealth>().number = i;
             }
         }
