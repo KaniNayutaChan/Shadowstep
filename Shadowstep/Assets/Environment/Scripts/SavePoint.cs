@@ -5,7 +5,7 @@ using UnityEngine;
 public class SavePoint : MonoBehaviour
 {
     public GameObject savePointMenu;
-    GameObject savePointMenuReference;
+    public GameObject restCanvas;
     bool hasSpawned;
 
     // Update is called once per frame
@@ -13,15 +13,24 @@ public class SavePoint : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, Player.instance.transform.position) < 1f)
         {
-            if(Input.GetKeyDown(KeyCode.UpArrow) && Player.instance.currentState == Player.State.Moving)
+            if(Player.instance.currentState == Player.State.Moving)
             {
-                Player.instance.currentState = Player.State.Saving;
-                RoomManager.instance.lastSavedRoomNumber = RoomManager.instance.currentRoomNumber;
-                RoomManager.instance.RespawnEnemies();
-                Player.instance.HealToFull();
-                hasSpawned = false;
-                Debug.Log("Game saved");
+                restCanvas.SetActive(true);
+
+                if (Input.GetKeyDown(KeyCode.UpArrow) && Player.instance.currentState == Player.State.Moving)
+                {
+                    Player.instance.currentState = Player.State.Saving;
+                    RoomManager.instance.lastSavedRoomNumber = RoomManager.instance.currentRoomNumber;
+                    RoomManager.instance.RespawnEnemies();
+                    Player.instance.HealToFull();
+                    hasSpawned = false;
+                    Debug.Log("Game saved");
+                }
             }
+        }
+        else
+        {
+            restCanvas.SetActive(false);
         }
 
         if (Player.instance.transform.position == Vector3.zero && Player.instance.currentState == Player.State.Saving)
@@ -37,6 +46,6 @@ public class SavePoint : MonoBehaviour
     IEnumerator SetPauseMenuActive()
     {
         yield return new WaitForSeconds(1);
-        savePointMenuReference = Instantiate(savePointMenu);
+        Instantiate(savePointMenu);
     }
 }
