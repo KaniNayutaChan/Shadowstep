@@ -19,7 +19,6 @@ public class RoomManager : MonoBehaviour
     [HideInInspector] public int lastSavedRoomNumber;
 
     [HideInInspector] public GameObject currentRoom;
-    [HideInInspector] public GameObject currentBackground;
     [HideInInspector] public int currentRoomNumber;
 
     public EnemyList[] enemyList;
@@ -52,8 +51,6 @@ public class RoomManager : MonoBehaviour
     {
         [Space]
         public GameObject room;
-        public GameObject background;
-        public Vector3 backgroundPos;
 
         [Space]
         public float minX;
@@ -125,16 +122,12 @@ public class RoomManager : MonoBehaviour
 
         //destroy current room
         Destroy(currentRoom);
-        //destroy current background
-        Destroy(currentBackground);
         //set new room to has been visited for map
         rooms[currentRoomNumber].hasBeenVisited = true;
         //store the current room number
         currentRoomNumber = room;
         //instantiate current room
         currentRoom = Instantiate(rooms[room].room);
-        //instantiate current background
-        currentBackground = Instantiate(rooms[room].background, rooms[room].backgroundPos, transform.rotation, mainCamera);
         //spawn player at correct position
         Player.instance.transform.position = spawnPos;
         //change player state back to moving
