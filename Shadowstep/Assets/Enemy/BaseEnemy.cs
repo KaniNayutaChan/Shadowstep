@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemyHealth : MonoBehaviour
+public class BaseEnemy: MonoBehaviour
 {
     public float maxHealth;
     public float currentHealth;
     public float maxPosture;
     public float currentPosture;
     public float experience;
+    public float damageMultiplier = 3;
     public GameObject experienceOrb;
     protected Animator animator;
     protected bool hasDied;
     [HideInInspector] public int number;
+    public float staggerTime;
+    protected float currentStaggerTime;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -25,16 +28,49 @@ public class BaseEnemyHealth : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (currentHealth <= 0 && !hasDied)
+        if(currentStaggerTime >= 0)
         {
-            Die();
-            hasDied = true;
+            currentStaggerTime -= Time.deltaTime;
+        }
+    }
+
+    public void TakePosture(float posture)
+    {
+        currentPosture += posture;
+
+        if (currentPosture > maxPosture)
+        {
+            animator.Play("Stagger");
+            currentStaggerTime = staggerTime;
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        if (!hasDied)
+        {
+            if (currentPosture > maxPosture)
+            {
+                currentHealth = 0;
+                animator.Play("Idle");
+                currentHealth -= damage * damageMultiplier;
+            }
+            else
+            {
+                currentHealth -= damage;
+            }
+
+            if (currentHealth < 0)
+            {
+                Die();
+            }
         }
     }
 
     protected virtual void Die()
     {
         animator.Play("Death");
+        hasDied = true;
 
         GameObject orb = Instantiate(experienceOrb, transform.position, transform.rotation, RoomManager.instance.currentRoom.transform);
         orb.GetComponent<ExperienceOrb>().experience = experience;

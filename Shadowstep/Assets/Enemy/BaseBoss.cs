@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBossHealth : BaseEnemyHealth
+public class BaseBoss: BaseEnemy
 {
     protected override void Die()
     {
