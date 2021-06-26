@@ -27,7 +27,7 @@ public class BaseRegularEnemy : BaseEnemy
             attackToUse = Random.Range(0, attackList.Length);
             attackCooldown = startAttackCooldown;
 
-            if (!hasDied && currentStaggerTime < 0)
+            if (!hasDied && !isStaggered)
             {
                 animator.Play(attackToUse);
             }

@@ -16,6 +16,7 @@ public class BaseEnemy: MonoBehaviour
     [HideInInspector] public int number;
     public float staggerTime;
     protected float currentStaggerTime;
+    protected bool isStaggered;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -31,6 +32,11 @@ public class BaseEnemy: MonoBehaviour
         if(currentStaggerTime >= 0)
         {
             currentStaggerTime -= Time.deltaTime;
+        }
+        else if(isStaggered)
+        {
+            animator.Play("Idle");
+            isStaggered = false;
         }
     }
 
@@ -51,6 +57,7 @@ public class BaseEnemy: MonoBehaviour
         {
             if (currentPosture > maxPosture)
             {
+                isStaggered = true;
                 currentHealth = 0;
                 animator.Play("Idle");
                 currentHealth -= damage * damageMultiplier;
