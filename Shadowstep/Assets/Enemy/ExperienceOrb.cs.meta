@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: ad6a42289b142404f878b77141935125
+guid: 8115f10c568abf945b9a9a92bb98e5d8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - experienceOrb: {fileID: 5914303212230573047, guid: 32cb8bade550b5f4bb5bfb6a49c8f326, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

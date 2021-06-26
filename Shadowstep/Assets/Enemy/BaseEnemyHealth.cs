@@ -9,6 +9,7 @@ public class BaseEnemyHealth : MonoBehaviour
     public float maxPosture;
     public float currentPosture;
     public float experience;
+    public GameObject experienceOrb;
     protected Animator animator;
     protected bool hasDied;
     [HideInInspector] public int number;
@@ -35,7 +36,8 @@ public class BaseEnemyHealth : MonoBehaviour
     {
         animator.Play("Death");
 
-        Player.instance.currentExperience += experience;
+        GameObject orb = Instantiate(experienceOrb, transform.position, transform.rotation, RoomManager.instance.currentRoom.transform);
+        orb.GetComponent<ExperienceOrb>().experience = experience;
         RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].aliveEnemies[number].enemyNumber = 0;
     }
 }
