@@ -36,7 +36,7 @@ public class MainCamera : MonoBehaviour
         }
         else
         {
-            cameraDestination.y = Player.instance.transform.position.x + yOffSet;
+            cameraDestination.y = Player.instance.transform.position.y + yOffSet;
         }
 
         cameraDestination.z = -1;

@@ -19,6 +19,7 @@ public class SavePoint : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.UpArrow) && Player.instance.currentState == Player.State.Moving)
                 {
+                    restCanvas.SetActive(false);
                     Player.instance.currentState = Player.State.Saving;
                     RoomManager.instance.lastSavedRoomNumber = RoomManager.instance.currentRoomNumber;
                     RoomManager.instance.RespawnEnemies();
