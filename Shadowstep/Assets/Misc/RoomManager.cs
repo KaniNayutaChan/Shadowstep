@@ -45,6 +45,30 @@ public class RoomManager : MonoBehaviour
         }
     }
 
+    [System.Serializable]
+    public class Area
+    {
+        public AreaType areaType;
+        public enum AreaType
+        {
+            Gatehouse,
+            EastWatchtower,
+            WestWatchtower,
+            Church,
+            ThroneRoom,
+            Keep,
+            Dungeon,
+            Laboratory,
+            Prison,
+            Library,
+            GreatHalls,
+            TrainingGround,
+            BedChambers
+        }
+
+        [HideInInspector] public bool hasBeenVisited = false;
+    }
+
     public RoomList[] rooms;
     [System.Serializable]
     public class RoomList
@@ -58,8 +82,11 @@ public class RoomManager : MonoBehaviour
         public float maxY;
 
         [Space]
-        public bool hasBeenVisited = false;
         public bool isSaveRoom = false;
+        [HideInInspector] public bool hasBeenVisited = false;
+
+        [Space]
+        public Area area;
 
         [Space]
         public Enemy[] enemies;
@@ -136,6 +163,14 @@ public class RoomManager : MonoBehaviour
         Player.instance.transform.position = spawnPos;
         //change player state back to moving
         Player.instance.currentState = Player.State.Moving;
+
+        //check if the area has been visited before
+        if(!rooms[room].area.hasBeenVisited)
+        {
+            rooms[room].area.hasBeenVisited = true;
+
+            //instantiate a canvas of this area
+        }
 
         //spawn each enemy
         for (int i = 0; i < rooms[room].aliveEnemies.Length; i++)
