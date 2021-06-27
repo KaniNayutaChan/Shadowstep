@@ -63,6 +63,9 @@ public class RoomManager : MonoBehaviour
         [Space]
         public Enemy[] enemies;
         [HideInInspector] public Enemy[] aliveEnemies;
+
+        [Space]
+        [HideInInspector] public bool[] gates = new bool[10];
     }
 
     // Start is called before the first frame update
