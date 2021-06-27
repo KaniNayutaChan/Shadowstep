@@ -988,12 +988,14 @@ MonoBehaviour:
   debugSpawnRoomNumber: 0
   debugSpawnPosition: {x: 0, y: 0}
   transition: {fileID: 320107546014614382, guid: f461eed50b1c9314a8a91484e794ae6a, type: 3}
-  areaCanvas: {fileID: 7865348620727792617, guid: 711ea27c237da864b810e277a93aa8f1, type: 3}
   lastSavedRoomNumber: 0
   currentRoom: {fileID: 0}
   currentRoomNumber: 0
   enemyList:
   - variantList: []
+  areaCanvas:
+  - {fileID: 6351908366014918765, guid: eafc6ab40d0826647927f48a46eb6ac6, type: 3}
+  - {fileID: 6351908366014918765, guid: 7b681f40a40a4964ab814edfc469361e, type: 3}
   rooms:
   - room: {fileID: 6197846856378872849, guid: 16ff97c6cc238e545b363e8c53d00926, type: 3}
     minX: -11
