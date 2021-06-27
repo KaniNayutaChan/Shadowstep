@@ -7,17 +7,14 @@ public class RoomManager : MonoBehaviour
     public static RoomManager instance;
 
     [Space]
-    public Transform mainCamera;
-
-    [Space]
     public int debugSpawnRoomNumber;
     public Vector2 debugSpawnPosition;
 
     [Space]
     public GameObject transition;
+    public GameObject areaCanvas;
 
     [HideInInspector] public int lastSavedRoomNumber;
-
     [HideInInspector] public GameObject currentRoom;
     [HideInInspector] public int currentRoomNumber;
 
@@ -45,29 +42,39 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    [System.Serializable]
-    public class Area
+    public enum AreaType
     {
-        public AreaType areaType;
-        public enum AreaType
-        {
-            Gatehouse,
-            EastWatchtower,
-            WestWatchtower,
-            Church,
-            ThroneRoom,
-            Keep,
-            Dungeon,
-            Laboratory,
-            Prison,
-            Library,
-            GreatHalls,
-            TrainingGround,
-            BedChambers
-        }
-
-        [HideInInspector] public bool hasBeenVisited = false;
+        Gatehouse,
+        EastWatchtower,
+        WestWatchtower,
+        Church,
+        ThroneRoom,
+        Keep,
+        Dungeon,
+        Laboratory,
+        Prison,
+        Library,
+        GreatHalls,
+        TrainingGround,
+        BedChambers
     }
+
+    public Dictionary<AreaType, bool> hasAreaBeenVisited = new Dictionary<AreaType, bool>()
+    {
+        { AreaType.Gatehouse, false },
+        { AreaType.EastWatchtower, false},
+        { AreaType.WestWatchtower, false},
+        { AreaType.Church, false},
+        { AreaType.ThroneRoom, false},
+        { AreaType.Keep, false},
+        { AreaType.Dungeon, false},
+        { AreaType.Laboratory, false},
+        { AreaType.Prison, false},
+        { AreaType.Library, false},
+        { AreaType.GreatHalls, false},
+        { AreaType.TrainingGround, false},
+        { AreaType.BedChambers, false},
+    };
 
     public RoomList[] rooms;
     [System.Serializable]
@@ -86,7 +93,7 @@ public class RoomManager : MonoBehaviour
         [HideInInspector] public bool hasBeenVisited = false;
 
         [Space]
-        public Area area;
+        public AreaType areaType;
 
         [Space]
         public Enemy[] enemies;
@@ -165,9 +172,9 @@ public class RoomManager : MonoBehaviour
         Player.instance.currentState = Player.State.Moving;
 
         //check if the area has been visited before
-        if(!rooms[room].area.hasBeenVisited)
+        if(!hasAreaBeenVisited[rooms[room].areaType])
         {
-            rooms[room].area.hasBeenVisited = true;
+            hasAreaBeenVisited[rooms[room].areaType] = true;
 
             //instantiate a canvas of this area
         }
