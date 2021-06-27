@@ -19,16 +19,27 @@ public class MainCamera : MonoBehaviour
     {
         if (Player.instance.transform.position.x > RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].maxX)
         {
-            cameraDestination.Set(RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].maxX, Player.instance.transform.position.y + yOffSet, -1);
+            cameraDestination.x = RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].maxX;
         }
         else if (Player.instance.transform.position.x < RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].minX)
         {
-            cameraDestination.Set(RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].minX, Player.instance.transform.position.y + yOffSet, -1);
+            cameraDestination.x = RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].minX;
         }
         else
         {
-            cameraDestination.Set(Player.instance.transform.position.x, Player.instance.transform.position.y + yOffSet, -1);
+            cameraDestination.x = Player.instance.transform.position.x;
         }
+
+        if(Player.instance.transform.position.y > RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].maxY)
+        {
+            cameraDestination.y = RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].maxY;
+        }
+        else
+        {
+            cameraDestination.y = Player.instance.transform.position.x + yOffSet;
+        }
+
+        cameraDestination.z = -1;
 
         transform.position = Vector3.Lerp(transform.position, cameraDestination, speed);
     }

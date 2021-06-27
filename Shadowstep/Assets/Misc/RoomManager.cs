@@ -55,6 +55,7 @@ public class RoomManager : MonoBehaviour
         [Space]
         public float minX;
         public float maxX;
+        public float maxY;
 
         [Space]
         public bool hasBeenVisited = false;
