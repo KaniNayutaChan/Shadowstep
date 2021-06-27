@@ -14,7 +14,7 @@ public class Gate : MonoBehaviour
         Lever,
         KillEnemies,
         Key,
-        Darkness
+        NightVision
     }
 
     // Start is called before the first frame update
