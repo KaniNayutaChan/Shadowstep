@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Transition : MonoBehaviour
+public class Fade : MonoBehaviour
 {
     Image image;
     bool isFadingIn = true;

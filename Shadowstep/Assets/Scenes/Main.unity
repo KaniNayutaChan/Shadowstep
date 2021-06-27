@@ -1007,6 +1007,18 @@ MonoBehaviour:
     enemies: []
     aliveEnemies: []
     gates: 0000
+  - room: {fileID: 6197846856378872849, guid: 16ff97c6cc238e545b363e8c53d00926, type: 3}
+    minX: -11
+    maxX: 11
+    maxY: 100
+    isSaveRoom: 1
+    hasBeenVisited: 0
+    area:
+      areaType: 0
+      hasBeenVisited: 0
+    enemies: []
+    aliveEnemies: []
+    gates: 0000
 --- !u!1 &1629513573
 GameObject:
   m_ObjectHideFlags: 0
