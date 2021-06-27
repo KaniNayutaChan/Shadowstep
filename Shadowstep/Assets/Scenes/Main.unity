@@ -985,10 +985,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ec29b23c491cc4ea8cd90b9425ad8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420032}
   debugSpawnRoomNumber: 0
   debugSpawnPosition: {x: 0, y: 0}
   transition: {fileID: 320107546014614382, guid: f461eed50b1c9314a8a91484e794ae6a, type: 3}
+  areaCanvas: {fileID: 7865348620727792617, guid: 711ea27c237da864b810e277a93aa8f1, type: 3}
   lastSavedRoomNumber: 0
   currentRoom: {fileID: 0}
   currentRoomNumber: 0
@@ -1001,9 +1001,7 @@ MonoBehaviour:
     maxY: 100
     isSaveRoom: 1
     hasBeenVisited: 0
-    area:
-      areaType: 0
-      hasBeenVisited: 0
+    areaType: 0
     enemies: []
     aliveEnemies: []
     gates: 0000
@@ -1013,9 +1011,7 @@ MonoBehaviour:
     maxY: 100
     isSaveRoom: 1
     hasBeenVisited: 0
-    area:
-      areaType: 0
-      hasBeenVisited: 0
+    areaType: 1
     enemies: []
     aliveEnemies: []
     gates: 0000

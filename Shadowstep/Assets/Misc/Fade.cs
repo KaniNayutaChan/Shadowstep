@@ -20,13 +20,14 @@ public class Fade : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {    
+    {
+        image.color = colorVector;
+
         if (isFadingIn)
         {
             if (image.color.a <= 1)
             {
                 colorVector.w += amountToFade * Time.deltaTime;
-                image.color = colorVector;
             }
             else
             {
@@ -42,7 +43,6 @@ public class Fade : MonoBehaviour
             if (image.color.a >= 0.001f)
             {
                 colorVector.w -= amountToFade * Time.deltaTime;
-                image.color = colorVector;
             }
             else
             {

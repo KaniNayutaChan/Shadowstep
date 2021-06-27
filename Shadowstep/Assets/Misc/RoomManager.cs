@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class RoomManager : MonoBehaviour
 
     [Space]
     public GameObject transition;
-    public GameObject areaCanvas;
 
     [HideInInspector] public int lastSavedRoomNumber;
     [HideInInspector] public GameObject currentRoom;
@@ -75,6 +75,8 @@ public class RoomManager : MonoBehaviour
         { AreaType.TrainingGround, false},
         { AreaType.BedChambers, false},
     };
+
+    public GameObject[] areaCanvas;
 
     public RoomList[] rooms;
     [System.Serializable]
@@ -176,7 +178,7 @@ public class RoomManager : MonoBehaviour
         {
             hasAreaBeenVisited[rooms[room].areaType] = true;
 
-            //instantiate a canvas of this area
+            Instantiate(areaCanvas[(int)rooms[room].areaType], currentRoom.transform);
         }
 
         //spawn each enemy
