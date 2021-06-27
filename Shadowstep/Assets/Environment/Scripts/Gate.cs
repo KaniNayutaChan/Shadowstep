@@ -54,5 +54,6 @@ public class Gate : MonoBehaviour
     {
         animator.Play("Open");
         RoomManager.instance.rooms[RoomManager.instance.currentRoomNumber].gates[number] = true;
+        Destroy(gameObject, 1);
     }
 }
